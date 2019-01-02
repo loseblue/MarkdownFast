@@ -29,9 +29,16 @@ class MdFast:
         all_buf_len = len(vim.current.buffer)
         print "lines: {0}".format(all_buf_len)
         while (i < all_buf_len):
-            vim.current.buffer[i] = cur_buf[i].strip()
-            vim.current.buffer[i] = cur_buf[i].strip(`　`)
-            i = i+1
+            tmp_len_buf = cur_buf[i].strip()
+            tmp_len_buf = tmp_len_buf.strip('　')
+
+            if not len(tmp_len_buf):
+                del vim.current.buffer[i]
+                all_buf_len = all_buf_len-1 # becauseof del line
+            else:
+                vim.current.buffer[i] = tmp_len_buf
+                i = i+1
+
 
 EOF
 
