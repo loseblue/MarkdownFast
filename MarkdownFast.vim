@@ -1,4 +1,5 @@
 " check the vim supports python
+" test
 if !has('python')
     echo 'Error: Required vim compile with +python'
     finish
