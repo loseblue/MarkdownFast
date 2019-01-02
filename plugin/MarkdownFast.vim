@@ -23,6 +23,17 @@ class MdFast:
         else:
             print "Contents: {0}".format(cur_line_buf)
 
+    def rmSpace(self):
+        i = 0
+        cur_buf = vim.current.buffer
+        all_buf_len = len(vim.current.buffer)
+        print "lines: {0}".format(all_buf_len)
+        while (i < all_buf_len):
+            vim.current.buffer[i] = cur_buf[i].strip()
+            vim.current.buffer[i] = cur_buf[i].strip(`　`)
+            i = i+1
+
 EOF
 
 command! -nargs=1 MdAddHeader exec('py MdFast().addHeader(<f-args>)')
+command! -nargs=0 MdRmSpace exec('py MdFast().rmSpace()')
