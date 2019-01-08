@@ -6,8 +6,21 @@ endif
 
 python << EOF
 import vim
+
 class MdFast:
-    def addHeader(self,lvl):
+    def strQ2B(self, ustring):
+        rstring = ""
+        for uchar in ustring:
+            inside_code=ord(uchar)
+            if inside_code == 12288:
+                inside_code = 32 
+            elif (inside_code >= 65281 and inside_code <= 65374):
+                inside_code -= 65248
+
+            rstring += unichr(inside_code)
+        return rstring
+
+    def addHeader(self, lvl):
         cur_buf = vim.current.buffer
         cur_line_buf = vim.current.line
         # print "Lines: {0}".format(len(cur_buf))
@@ -28,8 +41,8 @@ class MdFast:
         cur_buf = vim.current.buffer
         all_buf_len = len(vim.current.buffer)
         while (i < all_buf_len):
-            cur_buf[i].replace("　", " ")
-            tmp_len_buf = cur_buf[i].strip(' ')
+            tmp_len_buf = self.strQ2B(cur_buf[i].decode('utf-8'))
+            tmp_len_buf = tmp_len_buf.strip(' ')
 
             if not len(tmp_len_buf):
                 del vim.current.buffer[i]
