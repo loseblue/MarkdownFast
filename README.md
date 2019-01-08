@@ -23,5 +23,5 @@ map <leader>m4 :MdAddHeader 4<CR>       //<leader> m 4 set curosr line as headli
 
 map <leader>m<space> :MdRmSpace<CR>     // <leader> m <space> remove all lines head & tail space AND del empty lines
 map <leader>m` :MdAddLineBackquote<CR>  // <leader> m `  add line as code mode
-
+map <leader>m* :MdAddLineStrong<CR>     // <leader> m *  add line as strong
 ```
