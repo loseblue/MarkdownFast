@@ -43,8 +43,14 @@ class MdFast:
         cur_line_buf = vim.current.line
         vim.current.line = '`' + cur_line_buf + '`'
 
+    def addLineStrong(self):
+        cur_buf = vim.current.buffer
+        cur_line_buf = vim.current.line
+        vim.current.line = '**' + cur_line_buf + '**'
+
 EOF
 
 command! -nargs=1 MdAddHeader exec('py MdFast().addHeader(<f-args>)')
 command! -nargs=0 MdRmSpace exec('py MdFast().rmSpace()')
 command! -nargs=0 MdAddLineBackquote exec('py MdFast().addLineBackquote()')
+command! -nargs=0 MdAddLineStrong exec('py MdFast().addLineStrong()')
